@@ -29,6 +29,15 @@ server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
 
+var WebSocketServer = require('ws').Server;
+var wss = new WebSocketServer({server: server, path: '/comm'});
+wss.on('connection', function(ws) {
+  ws.on('message', function(message) {
+     ws.send(message);;
+  });
+  ws.send('Hello!');
+});
+
 /**
  * Normalize a port into a number, string, or false.
  */
