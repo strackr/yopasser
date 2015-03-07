@@ -10,7 +10,7 @@ socket.onopen = function() {
 }
 socket.onmessage = function(message) {
   console.log('received message: ' + message.data);
-  $('#messages').append(message.data);
+  $('#messages').append('<div class="badge">' + message.data + '</div>');
 }
 socket.onclose = function() {
   console.log('connection closed');
