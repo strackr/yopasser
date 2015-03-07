@@ -35,7 +35,7 @@ var wss = new WebSocketServer({server: server, path: '/comm'});
 wss.on('connection', function(ws) {
   sockets.push(ws);
   ws.on('message', function(message) {
-     sockets.forEach(function(socket) {
+     sockets.slice(0).forEach(function(socket) {
        try {
          socket.send(message);
        } catch (e) {
